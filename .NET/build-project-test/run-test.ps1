@@ -8,13 +8,9 @@ param(
 Push-Location $PSScriptRoot
 
 try {
-    $output = & ../../common/build-and-run-container.ps1 $WindowsTag "project\Dockerfile" "project\"
-    if (-not $output.Contains("Hello World!")) {
-        return 1
-    }
+    $result = & ../../common/build-and-run-web-container.ps1 $WindowsTag "project\Dockerfile" "project\"
+    return $result
 }
 finally {
     Pop-Location
 }
-
-return 0

@@ -13,7 +13,7 @@ if ($WindowsTag.Contains("nanoserver")) {
 Push-Location $PSScriptRoot
 
 try {
-    & ../../common/build-and-run-container.ps1 $WindowsTag 'project\Dockerfile' 'project\' @('cmd', '/c', '"C:\Windows\Microsoft.NET\Framework64\v4.0.30319\ngen display"') | Out-Host
+    & ../../common/build-and-run-console-container.ps1 $WindowsTag 'project\Dockerfile' 'project\' @('cmd', '/c', '"C:\Windows\Microsoft.NET\Framework64\v4.0.30319\ngen display"') | Out-Host
 }
 finally {
     Pop-Location

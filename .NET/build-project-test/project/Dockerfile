@@ -13,16 +13,18 @@ USER ContainerUser
 
 WORKDIR /app
 
-RUN dotnet new console `
+RUN dotnet new web `
     && dotnet publish -c release -o out
 
 
 FROM $WINDOWS_TAG AS app
 
+ENV ASPNETCORE_URLS=http://+:80
+
 USER ContainerAdministrator
-RUN curl -fSLo dotnet-runtime-win-x64.zip https://aka.ms/dotnet/current/dotnet-runtime-win-x64.zip `
+RUN curl -fSLo aspnetcore-runtime-win-x64.zip https://aka.ms/dotnet/current/aspnetcore-runtime-win-x64.zip `
     && mkdir "\Program Files\dotnet" `
-    && tar -C "\Program Files\dotnet" -oxzf dotnet-runtime-win-x64.zip
+    && tar -C "\Program Files\dotnet" -oxzf aspnetcore-runtime-win-x64.zip
 
 RUN setx /M PATH "%PATH%;C:\Program Files\dotnet"
 USER ContainerUser

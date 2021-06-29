@@ -13,7 +13,7 @@ if ($WindowsTag.Contains("nanoserver")) {
 Push-Location $PSScriptRoot
 
 try {
-    $output = & ../../common/build-and-run-container.ps1 $WindowsTag "project\Dockerfile" "project\"
+    $output = & ../../common/build-and-run-console-container.ps1 $WindowsTag "project\Dockerfile" "project\"
     if (-not $output.Contains("Hello World!")) {
         return 1
     }
